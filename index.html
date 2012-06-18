@@ -1,0 +1,389 @@
+<!doctype html>
+<html>
+    <head>
+        <title>This</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="Thomas A. Valletta" />
+        <link href="css/impress.css" rel="stylesheet" />
+    </head>
+    <body>
+		<p class="fallback-message">
+		    Your browser doesn't support impress.js.  Try Chrome or Safari.
+		</p>
+		<div id="impress">
+			<div id="title" class="step" data-x="0" data-y="0">
+			    <h1>THIS</h1>
+			    <h3>A presentation about this</h3>
+			    <h5>By Thomas A. Valletta</h5>
+			</div>
+			<div id="grid" class="step" data-x="0" data-y="800">
+			    <table>
+			    	<tr id="grid-header">
+			    		<th>
+			    			Execution Context
+			    		</th>
+			    		<th>
+			    			Syntax of Function Call
+			    		</th>
+			    		<th>
+			    			Value of <code>this</code>
+			    		</th>
+			    	</tr>
+			    	<tr id="grid-global">
+			    		<td>
+			    			Global
+			    		</td>
+			    		<td>
+			    			n/a
+			    		</td>
+			    		<td>
+			    			global object (e.g. <code>window</code>)
+			    		</td>
+			    	</tr>
+			    	<tr id="grid-method">
+			    		<td>
+			    			Function
+			    		</td>
+			    		<td>
+			    			Method call:<br/>
+							<code>myObject.foo();</code>
+			    		</td>
+			    		<td>
+			    			<code>myObject</code>
+			    		</td>
+			    	</tr>
+			    	<tr id="grid-baseless">
+			    		<td>
+			    			Function
+			    		</td>
+			    		<td>
+			    			Baseless function call:<br/>
+							<code>foo();</code>
+			    		</td>
+			    		<td>
+			    			global object (e.g. <code>window</code>)<br/>
+							(undefined in strict mode)
+			    		</td>
+			    	</tr>
+			    	<tr id="grid-call">
+			    		<td>
+			    			Function
+			    		</td>
+			    		<td>
+			    			Using call:<br/>
+							<code>foo.call(context, myArg);</code>
+			    		</td>
+			    		<td>
+			    			<code>context</code>
+			    		</td>
+			    	</tr>
+			    	<tr id="grid-apply">
+			    		<td>
+			    			Function
+			    		</td>
+			    		<td>
+			    			Using apply:<br/>
+							<code>foo.apply(context, [myArgs]);</code>
+			    		</td>
+			    		<td>
+			    			<code>context</code>
+			    		</td>
+			    	</tr>
+			    	<tr id="grid-constructor">
+			    		<td>
+			    			Function
+			    		</td>
+			    		<td>
+			    			Constructor with new:<br/>
+							<code>var newFoo = new Foo();<code>
+			    		</td>
+			    		<td>
+			    			the new instance<br/>
+							(e.g. <code>newFoo</code>)
+			    		</td>
+			    	</tr>
+			    	<tr id="grid-eval">
+			    		<td>
+			    			Evaluation
+			    		</td>
+			    		<td>
+			    			n/a
+			    		</td>
+			    		<td>
+			    			value of <code>this</code> in parent context
+			    		</td>
+			    	</tr>
+			    	<tr>
+			    		<td colspan="3" class="footer">
+			    			<a href="http://javascriptweblog.wordpress.com/2010/08/30/understanding-javascripts-this/">*Taken from "Understanding JavaScript's this" Keybord by Angus Croll</a>
+			    		</td>
+			    	</tr>
+			    </table>
+			</div>
+			<div id="global" class="step" data-x="0" data-y="700" data-scale="0.7">
+
+			</div>
+			<div id="global-code" class="step invisible" data-x="0" data-y="700" data-z="350" data-rotate-y="75">
+		    	<div class="code-black xx-small">
+					&lt;!doctype html&gt;<br/>						
+					&lt;html&gt;<br/>						    
+					&nbsp; &lt;head&gt;<br/>						        
+					&nbsp; &nbsp; &lt;title&gt;MyPage&lt;/title&gt;<br/>						        
+					&nbsp; &nbsp; &lt;script&gt;<br/>						        	
+					&nbsp; &nbsp; &nbsp; <span class="code">alert(this);</span><br/>						        
+					&nbsp; &nbsp; &lt;/script&gt;<br/>						    
+					&nbsp; &lt;/head&gt;<br/>						    
+					&nbsp; &lt;body&gt;<br/>						    	
+					&nbsp; &nbsp; ...<br/>						    
+					&nbsp; &lt;/body&gt;<br/>						
+					&lt;/html&gt;<br/>
+		    	</div>
+			</div>
+			<div id="method" class="step" data-x="0" data-y="748" data-scale="0.7">
+
+			</div>
+			<div id="method-code" class="step invisible" data-x="0" data-y="748" data-z="350" data-rotate-y="75">
+		    	<div class="code-black xx-small">
+					var myObject = {<br/>
+					&nbsp; foo: function() {<br/>
+					&nbsp; &nbsp; console.log(<span class="code">this</span>);<br/>
+					&nbsp; }<br/>
+					}<br/>
+					<span class="code">myObject.foo();</span><br/>
+		    	</div>
+			</div>
+			<div id="baseless" class="step" data-x="0" data-y="828" data-scale="0.7">
+
+			</div>
+			<div id="baseless-code" class="step invisible" data-x="0" data-y="828" data-z="350" data-rotate-y="75">
+		    	<div class="code-black xx-small">
+					var MyObject = function() {<br/>
+					&nbsp; <span class="code">var</span> foo = function() {<br/>
+					&nbsp; &nbsp; console.log(<span class="code">this</span>);<br/>
+					&nbsp; }<br/>
+					&nbsp; <span class="code">foo();</span><br/>
+					}<br/>
+					MyObject();
+		    	</div>
+			</div>
+			<div id="baseless-code2" class="step invisible" data-x="300" data-y="828" data-z="350" data-rotate-y="75">
+		    	<div class="code-black xx-small">
+					var MyObject = function() {<br/>
+					&nbsp; <span class="code">var</span> foo = function() {<br/>
+					&nbsp; &nbsp; console.log(<span class="code">this</span>);<br/>
+					&nbsp; }<br/>
+					&nbsp; <span class="code">foo();</span><br/>
+					}<br/>
+					<span class="code">new MyObject();</span>
+		    	</div>
+			</div>
+			<div id="baseless-code3" class="step invisible" data-x="600" data-y="828" data-z="350" data-rotate-y="75">
+		    	<div class="code-black xx-small">
+					var MyObject = function() {<br/>
+					&nbsp; <span class="code">this.</span>foo = function() {<br/>
+					&nbsp; &nbsp; console.log(<span class="code">this</span>);<br/>
+					&nbsp; }<br/>
+					&nbsp; <span class="code">this.foo();</span><br/>
+					}<br/>
+					MyObject();
+		    	</div>
+			</div>
+			<div id="baseless-code4" class="step invisible" data-x="900" data-y="828" data-z="350" data-rotate-y="75">
+		    	<div class="code-black xx-small">
+					var MyObject = function() {<br/>
+					&nbsp; <span class="code">this.</span>foo = function() {<br/>
+					&nbsp; &nbsp; console.log(<span class="code">this</span>);<br/>
+					&nbsp; }<br/>
+					&nbsp; <span class="code">this.foo();</span><br/>
+					}<br/>
+					<span class="code">new MyObject();</span>
+		    	</div>
+			</div>
+			<div id="constructor" class="step" data-x="0" data-y="1072" data-scale="0.7">
+
+			</div>
+			<div id="baseless-code5" class="step invisible" data-x="0" data-y="1072" data-z="350" data-rotate-y="75">
+		    	<div class="code-black xx-small">
+					var MyObject = function() {<br/>
+					&nbsp; <span class="code">this.</span>foo = function() {<br/>
+					&nbsp; &nbsp; console.log(<span class="code">this</span>);<br/>
+					&nbsp; }<br/>
+					&nbsp; <span class="code">this.foo();</span><br/>
+					}<br/>
+					var myMethod = function(callback) {<br/>
+					&nbsp; callback();<br/>
+					}<br/>
+					<span class="code">myMethod(new MyObject().foo);</span>
+
+		    	</div>
+			</div>
+			<div id="call" class="step" data-x="0" data-y="910" data-scale="0.7">
+
+			</div>
+			<div id="call-code" class="step invisible" data-x="0" data-y="910" data-z="350" data-rotate-y="75">
+		    	<div class="code-black xx-small">
+					function clickEvent(a, b, c) {<br/>
+					&nbsp; console.log(this);<br/>
+					}<br/>
+					clickEvent<span class="code">.call(domElement, 'a', 'b', 'c')</span>;
+		    	</div>
+			</div>
+			<div id="apply" class="step" data-x="0" data-y="991" data-scale="0.7">
+
+			</div>
+			<div id="apply-code" class="step invisible" data-x="0" data-y="991" data-z="350" data-rotate-y="75">
+		    	<div class="code-black xx-small">
+					function clickEvent(a, b, c) {<br/>
+					&nbsp; console.log(this);<br/>
+					}<br/>
+					clickEvent<span class="code">.apply(el, ['a', 'b', 'c'])</span>;
+		    	</div>
+			</div>
+			<div id="eval" class="step" data-x="0" data-y="1152" data-scale="0.7">
+
+			</div>
+			<div id="eval-code" class="step invisible" data-x="0" data-y="1152" data-z="350" data-rotate-y="75">
+		    	<div class="code-black xx-small">
+					function MyObject() {<br/>
+					&nbsp; eval("console.log(<span class="code">this</span>);");<br/>
+					}<br/>
+					<span class="code">new</span> MyObject();
+		    	</div>
+			</div>
+ 			<div class="step invisible" data-x="-250" data-y="300" data-rotate-x="20" data-rotate-y="-50" data-rotate-z="70" data-scale="1">
+			    <br/><br/><br/><br/><br/>
+			    <h6>Thanks!</h6>
+			    <h4>Thomas A. Valletta</h4>
+			    <h5>@tvalletta</h5>
+			</div>
+
+		</div>
+    <script type="text/javascript" src="js/impress.js"></script>
+    <script>
+    	var el = document.getElementById("impress");
+    	impress().init();
+
+		var grid = document.getElementById("grid");
+		var gridGlobal = document.getElementById("grid-global");
+		var gridMethod = document.getElementById("grid-method");
+		var gridBaseless = document.getElementById("grid-baseless");
+		var gridCall = document.getElementById("grid-call");
+		var gridApply = document.getElementById("grid-apply");
+		var gridConstructor = document.getElementById("grid-constructor");
+		var gridEval = document.getElementById("grid-eval");
+
+		var globalCode = document.getElementById("global-code");
+		var methodCode = document.getElementById("method-code");
+		var baselessCode = document.getElementById("baseless-code");
+		var baselessCode2 = document.getElementById("baseless-code2");
+		var baselessCode3 = document.getElementById("baseless-code3");
+		var baselessCode4 = document.getElementById("baseless-code4");
+		var baselessCode5 = document.getElementById("baseless-code5");
+		var callCode = document.getElementById("call-code");
+		var applyCode = document.getElementById("apply-code");
+		var evalCode = document.getElementById("eval-code");
+
+    	el.addEventListener("impress:stepenter", function (event) {
+    		switch (event.target.id) {
+    			case "title":
+    				console.log("title");
+    				break; 
+    			case "grid":
+    				grid.classList.add("active");
+					gridGlobal.className = "clarify";
+					gridMethod.className = "clarify";
+					gridBaseless.className = "clarify";
+					gridCall.className = "clarify";
+					gridApply.className = "clarify";
+					gridConstructor.className = "clarify";
+					gridEval.className = "clarify";
+    				break; 
+    			case "global":
+    				grid.classList.add("active");
+    				gridGlobal.className = "clarify";
+    				break; 
+    			case "global-code":
+    				globalCode.classList.remove("invisible");
+    				break; 
+    			case "method":
+    				grid.classList.add("active");
+    				gridMethod.className = "clarify";
+    				break; 
+    			case "method-code":
+    				methodCode.classList.remove("invisible");
+    				break; 
+    			case "baseless":
+    				grid.classList.add("active");
+    				gridBaseless.className = "clarify";
+    				break; 
+    			case "baseless-code":
+    				baselessCode.classList.remove("invisible");
+    				break; 
+    			case "baseless-code2":
+    				baselessCode2.classList.remove("invisible");
+    				break; 
+    			case "baseless-code3":
+    				baselessCode3.classList.remove("invisible");
+    				break; 
+    			case "baseless-code4":
+    				baselessCode4.classList.remove("invisible");
+    				break; 
+    			case "baseless-code5":
+    				baselessCode5.classList.remove("invisible");
+    				break; 
+    			case "call":
+    				grid.classList.add("active");
+    				gridCall.className = "clarify";
+    				break; 
+    			case "call-code":
+    				callCode.classList.remove("invisible");
+    				break; 
+    			case "apply":
+    				grid.classList.add("active");
+    				gridApply.className = "clarify";
+    				break; 
+    			case "apply-code":
+    				applyCode.classList.remove("invisible");
+    				break; 
+    			case "constructor":
+    				grid.classList.add("active");
+    				gridConstructor.className = "clarify";
+    				break; 
+    			case "eval":
+    				grid.classList.add("active");
+    				gridEval.className = "clarify";
+    				break; 
+    			case "eval-code":
+    				evalCode.classList.remove("invisible");
+    				break; 
+    			default: 
+    				console.log("default");
+    		}
+        }, false);
+
+    	el.addEventListener("impress:stepleave", function (event) {
+			grid.classList.remove("active");
+			gridGlobal.className = "obscure";
+			gridMethod.className = "obscure";
+			gridBaseless.className = "obscure";
+			gridCall.className = "obscure";
+			gridApply.className = "obscure";
+			gridConstructor.className = "obscure";
+			gridEval.className = "obscure";
+
+			globalCode.classList.add("invisible");
+			methodCode.classList.add("invisible");
+			baselessCode.classList.add("invisible");
+			baselessCode2.classList.add("invisible");
+			baselessCode3.classList.add("invisible");
+			baselessCode4.classList.add("invisible");
+			baselessCode5.classList.add("invisible");
+			callCode.classList.add("invisible");
+			applyCode.classList.add("invisible");
+			evalCode.classList.add("invisible");
+
+        }, false);
+
+    </script>
+    </body>
+</html>
